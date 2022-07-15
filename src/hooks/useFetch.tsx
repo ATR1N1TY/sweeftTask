@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { User } from "../types";
+import { User } from "../types/types";
 
 const useFetch = () => {
   const [prevId, setPrevId] = useState<string | undefined>(undefined);

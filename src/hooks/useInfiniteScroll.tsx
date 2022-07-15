@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { User, FullUser } from "../types";
+import { User, FullUser } from "../types/types";
 import useFetch from "./useFetch";
 
 const useInfiniteScroll = (fetchOptions?: string, id?: string) => {

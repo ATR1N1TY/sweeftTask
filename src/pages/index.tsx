@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import { User } from "../types";
+import { User } from "../types/types";
+// import UserCard from "../components/userCard";
 import UserCard from "../components/userCard";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 

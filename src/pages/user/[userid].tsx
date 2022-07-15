@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { User } from "../../types";
+import { User } from "../../types/types";
 import UserHeader from "../../components/userHeader";
 import UserCard from "../../components/userCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";

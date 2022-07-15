@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Crumb } from "../types";
+import { Crumb } from "../types/types";
 
 const useCrumbs = (): readonly [
   Crumb[],

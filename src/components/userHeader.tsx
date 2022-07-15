@@ -1,5 +1,5 @@
 import React from "react";
-import { FullUser } from "../types";
+import { FullUser } from "../types/types";
 import Image from "next/image";
 import staticImage from "../../public/vercel.svg";
 import useImage from "../hooks/useImage";

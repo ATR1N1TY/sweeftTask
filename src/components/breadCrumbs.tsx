@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { globalContext } from "../context/context";
-import { Crumb } from "../types";
+import { Crumb } from "../types/types";
 import Link from "next/link";
 
 const BreadCrumbs = () => {

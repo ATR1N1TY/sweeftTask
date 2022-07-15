@@ -4,7 +4,7 @@ import icon from "../../public/vercel.svg";
 import Link from "next/link";
 import { globalContext } from "../context/context";
 import useImage from "../hooks/useImage";
-import { User } from "../types";
+import { User } from "../types/types";
 
 const UserCard = (props: { user: User }) => {
   const {
