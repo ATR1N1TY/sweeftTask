@@ -1,30 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { Users } from "../types";
-// const endpoints = {
-//   get_all_users: `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${}/${}`,
-//   get_user_friends:
-//     "http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/1/friends/0/10",
+import { User } from "../types";
 
-// };
+const useFetch = () => {
+  const [prevId, setPrevId] = useState<string | undefined>(undefined);
 
-const useFetch = (): Users[] => {
-  const [users, setUsers] = useState<Users[]>([] as Users[]);
-
-  const fetchUsers = async (page: number, size: number) => {
-    const res = await fetch(
-      `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${size}`
-    );
-
+  const fetchUsers = async (
+    pageNumber: number,
+    size: number,
+    setter: any
+  ): Promise<void> => {
+    const url = `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${pageNumber}/${size}`;
+    const res = await fetch(url);
     const { list } = await res.json();
 
-    setUsers(list);
+    setter((users: User[]) =>
+      users.length !== 0 ? [...users, ...list] : list
+    );
   };
 
-  useEffect(() => {
-    fetchUsers(0, 24);
-  }, []);
+  const fetchUserDetails = async (setter: any, id?: string) => {
+    const res = await fetch(
+      `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
+    );
+    const user = await res.json();
 
-  return users;
+    setter(user);
+  };
+
+  const fetchUserFriends = async (
+    page: number,
+    size: number,
+    setter: any,
+    userId?: string
+  ): Promise<void> => {
+    const url = `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${userId}/friends/${page}/${size}`;
+    const res = await fetch(url);
+    const { list } = await res.json();
+
+    if (userId === prevId) {
+      setter((friends: User[]) =>
+        friends.length !== 0 ? [...friends, ...list] : list
+      );
+    } else {
+      setter(list);
+      setPrevId(userId);
+    }
+  };
+
+  return { fetchUsers, fetchUserDetails, fetchUserFriends };
 };
 
 export default useFetch;
