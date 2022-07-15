@@ -15,7 +15,7 @@ const UserHeader = (props: { user: FullUser }) => {
       <div className="imgWrapper h-full ">
         <Image
           src={staticImage}
-          loader={() => getImage(user.imageUrl)}
+          loader={() => getImage(user.imageUrl, user.id)}
           alt={user.name + " " + user.lastName}
           height={200}
           layout="fixed"
