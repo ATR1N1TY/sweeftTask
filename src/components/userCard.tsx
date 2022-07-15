@@ -6,6 +6,8 @@ import { globalContext } from "../context/context";
 import useImage from "../hooks/useImage";
 import { User } from "../types/types";
 
+//This is component for dispaying users in home page
+
 const UserCard = (props: { user: User }) => {
   const {
     user: { id, name, lastName, prefix, title, imageUrl },

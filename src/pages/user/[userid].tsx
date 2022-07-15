@@ -6,6 +6,8 @@ import UserCard from "../../components/userCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import BreadCrumbs from "../../components/breadCrumbs";
 
+//on UserPage we get given user id and fetch user and hes friends using useInfiniteScroll hook
+
 const UserPage = () => {
   const router = useRouter();
   const [id, setId] = useState(router.query?.userid);

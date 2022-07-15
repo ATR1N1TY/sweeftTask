@@ -4,6 +4,8 @@ import Image from "next/image";
 import staticImage from "../../public/vercel.svg";
 import useImage from "../hooks/useImage";
 
+//userHeader component is used in single user page
+
 const UserHeader = (props: { user: FullUser }) => {
   const { user } = props;
   const { getImage } = useImage();

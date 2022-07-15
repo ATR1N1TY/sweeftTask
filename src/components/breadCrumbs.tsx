@@ -3,6 +3,8 @@ import { globalContext } from "../context/context";
 import { Crumb } from "../types/types";
 import Link from "next/link";
 
+//BreadCrumbs component used in single user page
+
 const BreadCrumbs = () => {
   const { crumbs } = useContext(globalContext);
 
