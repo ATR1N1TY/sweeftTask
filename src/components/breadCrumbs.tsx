@@ -10,14 +10,14 @@ const BreadCrumbs = () => {
 
   return (
     <div className="breadcrumbs hover:cursor-pointer p-4">
-      {crumbs.map((crumb: Crumb) => {
+      {crumbs.map((crumb: Crumb, idx: number) => {
         return (
           <Link href={`/user/${crumb.id}`} key={crumb.id}>
             <span className="crumb">
               <span className="underline text-purple-800">
                 {crumb.fullName}
               </span>
-              {">"}
+              {crumbs.length - 1 === idx ? "" : ">"}
             </span>
           </Link>
         );
