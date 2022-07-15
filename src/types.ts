@@ -1,11 +1,11 @@
-export interface User {
+export type User = {
   id: number;
   name: string;
   lastName: string;
   prefix: string;
   title: string;
   imageUrl: string;
-}
+};
 
 export interface FullUser {
   id: number;
@@ -23,12 +23,12 @@ export interface FullUser {
   address: Address;
 }
 
-interface Company {
+export interface Company {
   name: string;
   suffix: string;
 }
 
-interface Address {
+export interface Address {
   zipCode: string;
   city: string;
   streetAddress: string;

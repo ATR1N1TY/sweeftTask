@@ -1,10 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { User } from "../types";
 import icon from "../../public/vercel.svg";
 import Link from "next/link";
 import { globalContext } from "../context/context";
 import useImage from "../hooks/useImage";
+import { User } from "../types";
 
 const UserCard = (props: { user: User }) => {
   const {
