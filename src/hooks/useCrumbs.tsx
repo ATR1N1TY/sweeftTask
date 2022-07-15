@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Crumb } from "../types";
 
-export interface Crumb {
-  fullName: string;
-  id: number;
-}
-
-const useCrumbs = () => {
+const useCrumbs = (): readonly [
+  Crumb[],
+  React.Dispatch<React.SetStateAction<Crumb[]>>
+] => {
   const [crumbs, setCrumbs] = useState<Crumb[]>([] as Crumb[]);
-
-  useEffect(() => {
-    // console.log(crumbs);
-  }, [crumbs]);
 
   return [crumbs, setCrumbs] as const;
 };

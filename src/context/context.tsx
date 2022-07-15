@@ -1,19 +1,17 @@
-import React, { createContext, useEffect } from "react";
-import useFetch from "../hooks/useFetch";
+import React, { createContext } from "react";
+import useCrumbs from "../hooks/useCrumbs";
 
 export const globalContext = createContext({} as any);
 
 const ContextProvider = (props: { children: React.ReactNode }) => {
   const { children } = props;
 
-  //   const data = useFetch();
-
-  //   useEffect(() => {
-  //     console.log(data);
-  //   }, [data]);
+  const [crumbs, setCrumbs] = useCrumbs();
 
   return (
-    <globalContext.Provider value={"data"}>{children}</globalContext.Provider>
+    <globalContext.Provider value={{ crumbs, setCrumbs }}>
+      {children}
+    </globalContext.Provider>
   );
 };
 
