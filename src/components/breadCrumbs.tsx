@@ -7,7 +7,7 @@ const BreadCrumbs = () => {
   const { crumbs } = useContext(globalContext);
 
   return (
-    <div className="breadcrumbs hover:cursor-pointer">
+    <div className="breadcrumbs hover:cursor-pointer p-4">
       {crumbs.map((crumb: Crumb) => {
         return (
           <Link href={`/user/${crumb.id}`} key={crumb.id}>

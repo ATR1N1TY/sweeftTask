@@ -9,7 +9,7 @@ const useCrumbs = () => {
   const [crumbs, setCrumbs] = useState<Crumb[]>([] as Crumb[]);
 
   useEffect(() => {
-    console.log(crumbs);
+    // console.log(crumbs);
   }, [crumbs]);
 
   return [crumbs, setCrumbs] as const;
