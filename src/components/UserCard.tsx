@@ -4,6 +4,7 @@ import { User } from "../types";
 import icon from "../../public/vercel.svg";
 import Link from "next/link";
 import { globalContext } from "../context/context";
+import useImage from "../hooks/useImage";
 
 const UserCard = (props: { user: User }) => {
   const {
@@ -11,10 +12,7 @@ const UserCard = (props: { user: User }) => {
   } = props;
 
   const { setCrumbs } = useContext(globalContext);
-
-  const getImage = (imageUrl: string) => {
-    return `${imageUrl}?v=${id}`;
-  };
+  const { getImage } = useImage();
 
   return (
     <article
@@ -27,7 +25,7 @@ const UserCard = (props: { user: User }) => {
         <div>
           <Image
             src={icon}
-            loader={() => getImage(imageUrl)}
+            loader={() => getImage(imageUrl, id)}
             alt="imageUrl"
             width={280}
             height={208}

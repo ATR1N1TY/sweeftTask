@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FullUser } from "../types";
 import Image from "next/image";
 import staticImage from "../../public/vercel.svg";
+import useImage from "../hooks/useImage";
 
 const UserHeader = (props: { user: FullUser }) => {
   const { user } = props;
-
-  const imageLoader = (imageUrl: string) => {
-    return imageUrl;
-  };
+  const { getImage } = useImage();
 
   return (
-    <header className="user flex p-4 gap-2  items-center">
+    <header className="user flex p-4 gap-2 items-center">
       <div className="imgWrapper h-full">
         <Image
           src={staticImage}
-          loader={() => imageLoader(user.imageUrl)}
+          loader={() => getImage(user.imageUrl)}
           alt={user.name + " " + user.lastName}
-          height={"200px"}
+          height={200}
           layout="fixed"
         />
       </div>
@@ -55,7 +53,7 @@ const UserHeader = (props: { user: FullUser }) => {
         </div>
       </div>
 
-      <div className="address w-3/12 border-black/30 border-2 p-2">
+      <div className="address w-3/12 border-black/30 border-2 p-2 h-full">
         <div className="compoany font-bold">
           {user.company?.name} {user.company?.suffix}
         </div>
