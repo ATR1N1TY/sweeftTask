@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
-import { globalContext } from "../../context/context";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { FullUser, User } from "../../types";
+import { User } from "../../types";
 import UserHeader from "../../components/userHeader";
 import UserCard from "../../components/userCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
-import useCrumbs, { Crumb } from "../../hooks/useCrumbs";
-import Link from "next/link";
 import BreadCrumbs from "../../components/breadCrumbs";
 
 const UserPage = () => {
@@ -37,7 +34,7 @@ const UserPage = () => {
       {/* Friends List */}
       <div className="friends">
         <h1 className=" font-bold text-3xl my-16 mx-4">Friends:</h1>
-        <div className="friendsList grid grid-cols-4 gap-4 m-4">
+        <div className="friendsList grid grid-cols-2 lg:grid-cols-4 gap-4 m-4">
           {userFriends.map((friend: User) => {
             return <UserCard user={friend} key={friend.id}></UserCard>;
           })}

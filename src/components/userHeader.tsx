@@ -9,8 +9,8 @@ const UserHeader = (props: { user: FullUser }) => {
   const { getImage } = useImage();
 
   return (
-    <header className="user flex p-4 gap-2 items-center">
-      <div className="imgWrapper h-full">
+    <header className="user flex p-4 gap-2 items-center flex-col lg:flex-row">
+      <div className="imgWrapper h-full ">
         <Image
           src={staticImage}
           loader={() => getImage(user.imageUrl)}
@@ -20,65 +20,66 @@ const UserHeader = (props: { user: FullUser }) => {
         />
       </div>
 
-      <div className="info w-full border-black/30 border-2 p-2">
-        <legend>Info</legend>
+      <div className="info w-full border-black/30 border-2 p-2 relative">
+        <legend className="absolute -top-3 bg-white">Info</legend>
 
-        <div className="name font-bold">
+        <p className="name font-bold">
           {user.prefix} {user.name} {user.lastName}
-        </div>
+        </p>
 
-        <div className="specialization italic">{user.title}</div>
+        <p className="specialization italic">{user.title}</p>
 
         <br />
 
-        <div className="email under">
+        <p className="email under">
           {" "}
           <span className="title underline">Email:</span> {user.email}
-        </div>
+        </p>
 
-        <div className="ip">
+        <p className="ip">
           <span className="title underline">Ip Address:</span> {user.ip}
-        </div>
+        </p>
 
-        <div className="ip">
+        <p className="ip">
           <span className="title underline">Ip Address:</span> {user.ip}
-        </div>
+        </p>
 
-        <div className="jobarea">
+        <p className="jobarea">
           <span className="title underline">Job Area:</span> {user.jobArea}
-        </div>
+        </p>
 
-        <div className="jobtype">
+        <p className="jobtype">
           <span className="title underline">Job Type:</span> {user.jobType}
-        </div>
+        </p>
       </div>
 
-      <div className="address w-3/12 border-black/30 border-2 p-2 h-full">
-        <div className="compoany font-bold">
+      <div className="address mt-2 lg:m-auto w-full lg:w-3/12 border-black/30 border-2 p-2 h-full relative">
+        <legend className=" absolute -top-3 bg-white">Address</legend>
+        <p className="compoany font-bold">
           {user.company?.name} {user.company?.suffix}
-        </div>
+        </p>
 
-        <div className="city">
+        <p className="city">
           <span className="title underline">City:</span> {user.address?.city}
-        </div>
+        </p>
 
-        <div className="country">
+        <p className="country">
           <span className="title underline">Country:</span>{" "}
           {user.address?.country}
-        </div>
+        </p>
 
-        <div className="state">
+        <p className="state">
           <span className="title underline">State:</span> {user.address?.state}
-        </div>
+        </p>
 
-        <div className="streetaddress">
+        <p className="streetaddress">
           <span className="title underline">Street Address:</span>{" "}
           {user.address?.streetAddress}
-        </div>
+        </p>
 
-        <div className="zipcode">
+        <p className="zipcode">
           <span className="title underline">ZIP:</span> {user.address?.zipCode}
-        </div>
+        </p>
       </div>
     </header>
   );
