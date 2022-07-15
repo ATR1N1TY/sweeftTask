@@ -15,7 +15,7 @@ const Home: NextPage = () => {
           })}
         </main>
       </div>
-      <div ref={ref}>rame</div>
+      <div ref={ref} className=" w-full h-1 invisible"></div>
     </div>
   );
 };

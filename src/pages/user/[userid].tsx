@@ -35,14 +35,14 @@ const UserPage = () => {
 
       {/* Friends List */}
       <div className="friends">
-        <h1 className=" font-bold text-3xl my-16 mx-4">Friends:</h1>
+        <h1 className=" font-bold text-3xl  my-8 mx-4">Friends:</h1>
         <div className="friendsList grid grid-cols-2 lg:grid-cols-4 gap-4 m-4">
           {userFriends.map((friend: User) => {
             return <UserCard user={friend} key={friend.id}></UserCard>;
           })}
         </div>
 
-        <div ref={ref}>rame</div>
+        <div ref={ref} className=" w-full h-1 invisible"></div>
       </div>
     </main>
   );
