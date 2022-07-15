@@ -1,37 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Image from "next/image";
 import { User } from "../types";
 import icon from "../../public/vercel.svg";
 import Link from "next/link";
+import { globalContext } from "../context/context";
 
 const UserCard = (props: { user: User }) => {
   const {
     user: { id, name, lastName, prefix, title, imageUrl },
   } = props;
 
-  useEffect(() => {
-    console.log(imageUrl);
-  }, []);
+  const { setCrumbs } = useContext(globalContext);
 
   const getImage = (imageUrl: string) => {
     return `${imageUrl}?v=${id}`;
   };
 
   return (
-    <article className="Usercard border-black/25 border-2 cursor-pointer">
+    <article
+      className="Usercard border-black/25 border-2 cursor-pointer"
+      onClick={() =>
+        setCrumbs((crumbs: string[]) => [...crumbs, { fullName: name, id }])
+      }
+    >
       <Link href={`/user/${id}`} passHref>
         <div>
-          <div className="img w-72 h-52">
-            <Image
-              src={icon}
-              loader={() => getImage(imageUrl)}
-              alt="imageUrl"
-              width={640}
-              height={480}
-              className=" w-72 h-52"
-            />
-          </div>
-          <div className="details px-4 py-2">
+          <Image
+            src={icon}
+            loader={() => getImage(imageUrl)}
+            alt="imageUrl"
+            width={280}
+            height={208}
+            className=" w-72 h-52"
+            layout="responsive"
+          />
+          <div className="details text-left m-1">
             <p className="name font-bold text-xl">
               {prefix} {name} {lastName}
             </p>
