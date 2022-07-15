@@ -20,7 +20,10 @@ const UserCard = (props: { user: User }) => {
     <article
       className="Usercard border-black/25 border-2 cursor-pointer"
       onClick={() =>
-        setCrumbs((crumbs: string[]) => [...crumbs, { fullName: name, id }])
+        setCrumbs((crumbs: string[]) => [
+          ...crumbs,
+          { fullName: `${prefix} ${name} ${lastName}`, id },
+        ])
       }
     >
       <Link href={`/user/${id}`} passHref>

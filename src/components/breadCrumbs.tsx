@@ -14,7 +14,9 @@ const BreadCrumbs = () => {
         return (
           <Link href={`/user/${crumb.id}`} key={crumb.id}>
             <span className="crumb">
-              <span className="underline">{crumb.fullName}</span>
+              <span className="underline text-purple-800">
+                {crumb.fullName}
+              </span>
               {">"}
             </span>
           </Link>
