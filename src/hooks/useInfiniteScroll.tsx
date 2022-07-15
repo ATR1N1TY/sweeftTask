@@ -5,8 +5,18 @@ import useFetch from "./useFetch";
 //useInfiniteScroll takes 2 optional arguments
 //fetchOptions determines which fetch function we should execute from useFetch hook
 
-const useInfiniteScroll = (fetchOptions?: string, id?: string) => {
-  const { fetchUsers, fetchUserDetails, fetchUserFriends } = useFetch();
+const useInfiniteScroll = (
+  fetchOptions?: string,
+  id?: string
+): {
+  users: User[];
+  user: FullUser;
+  userFriends: User[];
+  ref: React.MutableRefObject<null>;
+  loading: boolean;
+} => {
+  const { fetchUsers, fetchUserDetails, fetchUserFriends, loading } =
+    useFetch();
 
   //hooks for storing important variables
   const [page, setPage] = useState<number>(1);
@@ -42,7 +52,7 @@ const useInfiniteScroll = (fetchOptions?: string, id?: string) => {
     if (ref.current) observer.observe(ref.current);
   }, [handleScroll, ref.current]);
 
-  return { users, user, userFriends, ref };
+  return { users, user, userFriends, ref, loading };
 };
 
 export default useInfiniteScroll;

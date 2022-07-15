@@ -3,9 +3,20 @@ import { User } from "../types/types";
 
 //All fetch functions needed to run this app can be found here, there're 3 of them as you know
 
-const useFetch = () => {
+const useFetch = (): {
+  fetchUsers: (pageNumber: number, size: number, setter: any) => Promise<void>;
+  fetchUserDetails: (setter: any, id?: string | undefined) => Promise<void>;
+  fetchUserFriends: (
+    page: number,
+    size: number,
+    setter: any,
+    userId?: string | undefined
+  ) => Promise<void>;
+  loading: boolean;
+} => {
   //this state is for fetchUserFriends function
-  const [prevId, setPrevId] = useState<string | undefined>(undefined);
+  const [prevId, setPrevId] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
 
   //fetch users for home page
   const fetchUsers = async (
@@ -13,6 +24,7 @@ const useFetch = () => {
     size: number,
     setter: any
   ): Promise<void> => {
+    setLoading(true);
     const url = `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${pageNumber}/${size}`;
     const res = await fetch(url);
     const { list } = await res.json();
@@ -21,16 +33,20 @@ const useFetch = () => {
     setter((users: User[]) =>
       users.length !== 0 ? [...users, ...list] : list
     );
+    setLoading(false);
   };
 
   //when user clicks on UserCard component this function will get detailed information of that user
   const fetchUserDetails = async (setter: any, id?: string) => {
+    setLoading(true);
+
     const res = await fetch(
       `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
     );
     const user = await res.json();
 
     setter(user);
+    setLoading(false);
   };
 
   const fetchUserFriends = async (
@@ -39,6 +55,8 @@ const useFetch = () => {
     setter: any,
     userId?: string
   ): Promise<void> => {
+    setLoading(true);
+
     const url = `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${userId}/friends/${page}/${size}`;
     const res = await fetch(url);
     const { list } = await res.json();
@@ -54,9 +72,10 @@ const useFetch = () => {
       setter(list);
       setPrevId(userId);
     }
+    setLoading(false);
   };
 
-  return { fetchUsers, fetchUserDetails, fetchUserFriends };
+  return { fetchUsers, fetchUserDetails, fetchUserFriends, loading };
 };
 
 export default useFetch;

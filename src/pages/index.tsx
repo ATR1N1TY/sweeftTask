@@ -2,9 +2,10 @@ import type { NextPage } from "next";
 import { User } from "../types/types";
 import UserCard from "../components/userCard";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import Loading from "../components/loading";
 
 const Home: NextPage = () => {
-  const { users, ref } = useInfiniteScroll("showUsers");
+  const { users, ref, loading } = useInfiniteScroll("showUsers");
 
   return (
     <div className="home">
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
         </main>
       </div>
       <div ref={ref} className=" w-full h-1 invisible"></div>
+      <Loading loader={loading} />
     </div>
   );
 };

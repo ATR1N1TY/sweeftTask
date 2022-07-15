@@ -5,13 +5,14 @@ import UserHeader from "../../components/userHeader";
 import UserCard from "../../components/userCard";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import BreadCrumbs from "../../components/breadCrumbs";
+import Loading from "../../components/loading";
 
 //on UserPage we get given user id and fetch user and hes friends using useInfiniteScroll hook
 
 const UserPage = () => {
   const router = useRouter();
   const [id, setId] = useState(router.query?.userid);
-  const { user, userFriends, ref } = useInfiniteScroll(
+  const { user, userFriends, ref, loading } = useInfiniteScroll(
     "showUser showUserFriends",
     id?.toString()
   );
@@ -44,6 +45,7 @@ const UserPage = () => {
 
         <div ref={ref} className=" w-full h-1 invisible"></div>
       </div>
+      <Loading loader={loading} />
     </main>
   );
 };
